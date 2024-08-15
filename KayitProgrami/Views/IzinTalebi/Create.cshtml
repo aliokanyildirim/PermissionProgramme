@@ -1,0 +1,38 @@
+﻿@model KayitProgrami.Models.IzinTalebiViewModel
+
+@{
+    ViewData["Title"] = "Create Leave Request";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="IzinTarihiBaslangic" class="control-label"></label>
+        <input asp-for="IzinTarihiBaslangic" class="form-control" type="date" id="IzinTarihiBaslangic" name="IzinTarihiBaslangic" min="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+        <span asp-validation-for="IzinTarihiBaslangic" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IzinTarihiBitis" class="control-label"></label>
+        <input asp-for="IzinTarihiBitis" class="form-control" type="date" id="IzinTarihiBitis" name="IzinTarihiBitis" min="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+        <span asp-validation-for="IzinTarihiBitis" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Aciklama" class="control-label"></label>
+        <textarea asp-for="Aciklama" class="form-control"></textarea>
+        <span asp-validation-for="Aciklama" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Gönder</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+        

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<KayitProgrami.Models.ApplicationUser> 
+
+ @if (Model.Any())
+{
+    <table class="table">
+
+        <thead>
+            <tr> 
+                <th>Username</th>
+                <th>Remaining Day</th>
+                <th>Used Day</th>
+                <th>total used day</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr> 
+                    <td>@item.UserName</td>
+                    <td>@item.AnnualLeave</td>
+                    <td>@item.UsedLeave</td>
+                    <td>  @item.Permissions.Sum(p => p.KullanilanIzin)  </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+

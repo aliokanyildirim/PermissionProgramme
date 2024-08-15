@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<KayitProgrami.Models.IzinTalebi>
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-end mb-3">
+          
+        @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+        {
+            <div class="me-3">
+                Welcome, @User.Identity.Name!
+                <br /> 
+                Remaining AnnualLeave:
+                @if(Model !=null && Model.Any()) {
+                
+                   <h4>@Model.First().AnnualLeave Gün</h4>
+                }else
+                {
+                    <span>No leave data available.</span>
+                }
+            </div>
+        }
+    </div>
+    @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+    {
+        <div class="text-center">
+            <h1 class="display-4">Welcome</h1>
+        </div>
+    }else if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <div class="text-center">
+            <h1 class="display-4">Welcome</h1>
+            <h1 class="display-4">Admin Page</h1>
+            
+        </div>
+    }
+
+</div>

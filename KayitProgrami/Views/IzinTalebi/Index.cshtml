@@ -1,0 +1,60 @@
+﻿@model IEnumerable<KayitProgrami.Models.IzinTalebi>
+
+
+@{
+    ViewData["Title"] = "My Leave Request";
+}
+
+<h1>@ViewData["Title"]</h1>
+<br />
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                @* <th>@Html.DisplayNameFor(model => model.First().KullaniciAdi)</th>
+                <th>@Html.DisplayNameFor(model => model.First().IzinTarihiBaslangic)</th>
+                <th>@Html.DisplayNameFor(model => model.First().IzinTarihiBitis)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Aciklama)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Status)</th> *@
+                <th>Username</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>Description</th>
+                <th>Remaining Day</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.KullaniciAdi</td>
+                    <td>@item.IzinTarihiBaslangic.ToShortDateString()</td>
+                    <td>@item.IzinTarihiBitis.ToShortDateString()</td>
+                    <td>@item.Aciklama</td>
+                    <td>@item.AnnualLeave</td>
+                    <td>
+                        @if (item.Status == RequestStatus.Pending)
+                        {
+                          <b><span style="color: darkorange; ">Pending</span></b>  
+                        }
+                        else if (item.Status == RequestStatus.Accepted)
+                        {
+                            <b><span style="color: mediumseagreen;">Accepted</span></b>
+                        }
+                        else if (item.Status == RequestStatus.Rejected)
+                        {
+                          <b><span style="color: red;">Rejected</span></b>  
+                        }
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Henüz izin talebiniz bulunmuyor.</p>
+}

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<KayitProgrami.Models.ApplicationUser>
+
+@if (Model.Any())
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>UserId</th>
+                <th>Username</th>                
+                <th>AnnualDate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.UserName</td>
+                    <td>@item.UsedLeave</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
